@@ -27,7 +27,7 @@ public:
     void draw() {
         if(active) DrawRectangleRec(body, color);
     }
-    
+ /*   
     void takeDamage() {
         health -= 50;
     }
@@ -51,7 +51,7 @@ public:
             die();
         }
     }
-
+*/
 };
 
 class Bullet {

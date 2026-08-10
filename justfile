@@ -30,3 +30,11 @@ run: build
 # Neteja tots els directoris de compilació
 clean:
     rm -rf {{BUILD_DIR}} {{BUILD_WIN_DIR}}
+
+# Neteja el directori de compilació de Linux
+clean-linux:
+    rm -rf {{BUILD_DIR}}
+
+# Neteja el directori de compilació de Windows
+clean-win:
+    rm -rf {{BUILD_WIN_DIR}}
