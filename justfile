@@ -1,22 +1,32 @@
-# Carrega variables per defecte (pots canviar-ho si vols)
 BUILD_DIR := "build"
+BUILD_WIN_DIR := "build-win"
 EXEC_NAME := "SpaceInvaders"
 
-# Per defecte, si només posa 'just', executarà la primera recepta (run)
 default: run
 
-# Configura CMake usant Ninja i g++ (només cal fer-ho 1 cop)
+# Setup per compilar a Linux
 setup:
     cmake -B {{BUILD_DIR}} -G Ninja -DCMAKE_CXX_COMPILER=g++
 
-# Compila
+# Setup per cross-compilar a Windows des de Linux (utilitzant MinGW)
+setup-win:
+    cmake -B {{BUILD_WIN_DIR}} -G Ninja \
+        -DCMAKE_SYSTEM_NAME=Windows \
+        -DCMAKE_C_COMPILER=x86_64-w64-mingw32-gcc \
+        -DCMAKE_CXX_COMPILER=x86_64-w64-mingw32-g++
+
+# Compila per a Linux
 build:
     cmake --build {{BUILD_DIR}}
 
-# Compila i executa
+# Compila per a Windows (.exe)
+build-win:
+    cmake --build {{BUILD_WIN_DIR}}
+
+# Compila i executa a Linux
 run: build
     ./{{BUILD_DIR}}/{{EXEC_NAME}}
 
-# Netejar el directori /build
+# Neteja tots els directoris de compilació
 clean:
-    rm -rf {{BUILD_DIR}}
+    rm -rf {{BUILD_DIR}} {{BUILD_WIN_DIR}}
