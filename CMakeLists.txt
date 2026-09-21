@@ -5,8 +5,8 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build static libraries" FORCE)
-set(BUILD_EXAMPLES OFF CACHE BOOL "Do not build raylib examples" FORCE)
-set(BUILD_GAMES OFF CACHE BOOL "Do not build raylib games" FORCE)
+# set(BUILD_EXAMPLES OFF CACHE BOOL "Do not build raylib examples" FORCE)
+# set(BUILD_GAMES OFF CACHE BOOL "Do not build raylib games" FORCE)
 set(GLFW_BUILD_WAYLAND ON CACHE BOOL "Build GLFW with Wayland support" FORCE)
 
 # Si compilem per a Windows, forcem enllaçat estàtic del runtime C/C++ 
@@ -15,15 +15,17 @@ if(WIN32)
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static -static-libgcc -static-libstdc++")
 endif()
 
-include(FetchContent)
+# Busquem la instal·lació de raylib del sistema
+find_package(raylib REQUIRED)
 
-FetchContent_Declare(
-    raylib
-    GIT_REPOSITORY https://github.com/raysan5/raylib.git
-    GIT_TAG        6.0
-)
-
-FetchContent_MakeAvailable(raylib)
+# --- DESCARREGA AUTOMÀTICA DESACTIVADA ---
+# include(FetchContent)
+# FetchContent_Declare(
+#     raylib
+#     GIT_REPOSITORY https://github.com/raysan5/raylib.git
+#     GIT_TAG        6.0
+# )
+# FetchContent_MakeAvailable(raylib)
 
 file(GLOB SOURCES "src/*.cpp")
 add_executable(${PROJECT_NAME} ${SOURCES})
