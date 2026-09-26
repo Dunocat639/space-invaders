@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Bullet.h"
 #include "GameManager.h"
+#include "Constants.h"
 
 int main() {
     InitWindow(screenWidth, screenHeight, "Space Invaders");

@@ -32,6 +32,8 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
 
+target_include_directories(${PROJECT_NAME} PRIVATE include)
+
 # Copiar automàticament la carpeta assets/ al directori de l'executable si existeix
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/assets")
     add_custom_command(

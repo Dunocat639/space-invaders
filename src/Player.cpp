@@ -1,8 +1,6 @@
 #include "Player.h"
-#include "Bullet.h"
 #include "GameManager.h"
-
-#include "raylib.h"
+#include "Constants.h"
 
 
 class Player {
@@ -24,7 +22,7 @@ public:
     }
 
     // So the player doesn't move out the screen
-    void clampPosition() {
+    void Player::clampPosition() {
         // Right corner
         if (position.x > (screenWidth - size.x)) {
             position.x = screenWidth - size.x;
@@ -35,7 +33,7 @@ public:
         }
     }
 
-    void shoot(float dt) {
+    void Player::shoot(float dt) {
         if (IsKeyPressed(KEY_SPACE) || IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
             Bullet newBullet(Vector2 {position.x + size.x/2.0f, position.y}); // Add the vector to center the bullet to the player
             bullets.push_back(newBullet); // Add a new bullet to the bullets list
@@ -54,7 +52,7 @@ public:
     }
     
 
-    void draw() {
+    void Player::draw() {
         DrawRectangleV(position, {size.x, size.y}, color);
 
         for (size_t i = 0; i < bullets.size(); i++) {
@@ -62,7 +60,7 @@ public:
         }
     }
 
-    void controls(float dt) {
+    void Player::controls(float dt) {
         if (IsKeyDown(KEY_LEFT)  || IsKeyDown(KEY_A)) position.x -= velocity * dt;
         if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D)) position.x += velocity * dt;
         // We dont need vertical movement at the moment:
@@ -72,7 +70,7 @@ public:
         clampPosition();
     }
 
-    void update(float dt) {
+    void Player::update(float dt) {
         controls(dt);
         shoot(dt);
     }

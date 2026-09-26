@@ -2,6 +2,8 @@
 #define PLAYER_H
 
 #include <vector>
+#include "raylib.h"
+#include "Bullet.h"
 
 class Player {
 public:

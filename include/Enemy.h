@@ -1,6 +1,13 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
+#include "raylib.h"
+#include <vector>
+
+#include "GameManager.h"
+
+class Bullet;
+
 class Enemy {
 public:
     Vector2 position;

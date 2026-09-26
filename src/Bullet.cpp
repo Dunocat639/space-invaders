@@ -19,7 +19,7 @@ public:
         active = true;
     }
 
-    void update(float dt) {
+    void Bullet::update(float dt) {
         position.y -= velocity * dt;
 
         // If no longer in screen
@@ -28,7 +28,7 @@ public:
         }
     }
 
-    void draw() {
+    void Bullet::draw() {
         DrawCircleV(position, size, color);
     }
 

@@ -1,9 +1,6 @@
 #include "Enemy.h"
-#include "Bullet.h"
-#include "GameManager.h"
+#include "Constants.h"
 
-#include "raylib.h"
-#include <vector>
 
 class Enemy {
 public:
@@ -24,19 +21,19 @@ public:
         active = true;
     }
 
-    void draw() {
+    void Enemy::draw() {
         if(active) DrawRectangleRec(body, color);
     }
  
-    void takeDamage() {
+    void Enemy::takeDamage() {
         health -= 50;
     }
 
-    void die() {
+    void Enemy::die() {
         active = false;
     }
 
-    void checkCollisionBullet(std::vector<Bullet>& bullets) {
+    void Enemy::checkCollisionBullet(std::vector<Bullet>& bullets) {
         if (!active) return;
         for (size_t i = 0; i < bullets.size(); i++) {
             if (CheckCollisionCircleRec(bullets[i].position, bullets[i].size, body) && bullets[i].active) {
@@ -47,7 +44,7 @@ public:
 
     }
 
-    void update(std::vector<Bullet>& bullets) {
+    void Enemy::update(std::vector<Bullet>& bullets) {
         body = {position.x, position.y, size, size};
         checkCollisionBullet(bullets);
         if (health <= 0) {
