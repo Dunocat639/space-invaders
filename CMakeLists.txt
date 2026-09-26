@@ -23,8 +23,10 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 
 # Li fiquem els flags de debug i warnings perquè el compilador et cridi si fas alguna xapussa
 target_compile_options(${PROJECT_NAME} PRIVATE
+    -O2
     -Wall
     -Wextra
+    -Werror
     -Wpedantic
     -g
 )
