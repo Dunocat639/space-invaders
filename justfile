@@ -6,7 +6,7 @@ default: run
 
 # Setup per compilar a Linux
 setup:
-    cmake -B {{BUILD_DIR}} -G Ninja -DCMAKE_CXX_COMPILER=g++
+    cmake -B {{BUILD_DIR}} -G Ninja -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
 
 # Setup per cross-compilar a Windows des de Linux (utilitzant MinGW)
 setup-win:
