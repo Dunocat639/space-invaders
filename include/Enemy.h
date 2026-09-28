@@ -4,8 +4,6 @@
 #include "raylib.h"
 #include <vector>
 
-#include "GameManager.h"
-
 class Bullet;
 
 class Enemy {

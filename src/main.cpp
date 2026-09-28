@@ -1,5 +1,4 @@
 #include "raylib.h"
-#include "raymath.h"
 
 #include "Enemy.h"
 #include "Player.h"
@@ -14,21 +13,19 @@ int main() {
     int refreshRate = GetMonitorRefreshRate(monitor);
     SetTargetFPS(refreshRate);
 
+    GameManager game;
     Player player;
+    Bullet bullet(player.position);
     Enemy enemy;
 
     while (!WindowShouldClose()) {
 
-        float deltaTime = GetFrameTime();
-
-        player.update(deltaTime);
-        enemy.update(player.bullets);
+        game.Update(player, bullet, enemy);
 
         BeginDrawing();
         ClearBackground(DARKBLUE);
 
-        player.draw();
-        enemy.draw();
+        game.Draw(player, bullet, enemy);
         DrawFPS(10, 10);
 
         EndDrawing();

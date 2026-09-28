@@ -1,8 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <vector>
 #include "raylib.h"
+#include <vector>
 #include "Bullet.h"
 
 class Player {
