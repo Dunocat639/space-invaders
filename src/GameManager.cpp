@@ -6,6 +6,7 @@ GameManager::GameManager(){
 
 float GameManager::GetDeltaTime() {
     float deltaTime = GetFrameTime();
+    return deltaTime;
 }
 
 void GameManager::Update(Player& player, Bullet& bullet, Enemy& enemy) {

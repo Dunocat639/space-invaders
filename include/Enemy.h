@@ -4,7 +4,7 @@
 #include "raylib.h"
 #include <vector>
 
-class Bullet;
+#include "Bullet.h"
 
 class Enemy {
 public:
