@@ -1,6 +1,8 @@
 #ifndef BULLET_H
 #define BULLET_H
 
+#include "raylib.h"
+
 class Bullet {
 public:
     Vector2 position;
@@ -9,13 +11,7 @@ public:
     Color color;
     bool active;
 
-    Bullet(Vector2 originPos) {
-        size;
-        position; // The bullet spawns where the player is at the moment of the shoot
-        velocity;
-        color;   
-        active;
-    }
+    Bullet(Vector2 originPos);
 
     void update(float dt);
 

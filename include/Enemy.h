@@ -18,14 +18,7 @@ public:
     bool active;
     Rectangle body;
 
-    Enemy() {
-        size;
-        position;
-        velocity;
-        health;
-        color; 
-        active;
-    }
+    Enemy();
 
     void draw();
 

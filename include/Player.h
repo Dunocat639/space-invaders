@@ -15,13 +15,7 @@ public:
 
     std::vector<Bullet> bullets;
 
-    Player() {
-        size;
-        position; // At the bottom of the screen
-        velocity;
-        health;
-        color;
-    }
+    Player();
 
     // So the player doesn't move out the screen
     void clampPosition();
