@@ -20,12 +20,12 @@ int main() {
 
     while (!WindowShouldClose()) {
 
-        game.Update(player, bullet, enemy);
+        game.update(player, bullet, enemy);
 
         BeginDrawing();
         ClearBackground(DARKBLUE);
 
-        game.Draw(player, bullet, enemy);
+        game.draw(player, bullet, enemy);
         DrawFPS(10, 10);
 
         EndDrawing();

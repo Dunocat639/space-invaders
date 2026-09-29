@@ -16,9 +16,9 @@ public:
 
     float GetDeltaTime();
 
-    void Update(Player& player, Bullet& bullet, Enemy& enemy);
+    void update(Player& player, Bullet& bullet, Enemy& enemy);
 
-    void Draw(Player& player, Bullet& bullet, Enemy& enemy);
+    void draw(Player& player, Bullet& bullet, Enemy& enemy);
 };
 
 #endif
