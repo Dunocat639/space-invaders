@@ -1,13 +1,15 @@
-# Detecta el sistema operatiu automàticament ("linux" o "windows")
+# Automatically detect the operating system ("linux" or "windows")
 OS := os()
 
-BUILD_DIR := if OS == "windows" { "build-win-native" } else { "build-linux" }
-BUILD_CROSS_DIR := "build-win-cross"
+# Base directory for all builds and their specific subdirectories
+BUILD_BASE_DIR := "build"
+BUILD_DIR := if OS == "windows" { BUILD_BASE_DIR + "/windows" } else { BUILD_BASE_DIR + "/linux" }
+BUILD_CROSS_DIR := BUILD_BASE_DIR + "/win-cross"
 EXEC_NAME := "SpaceInvaders"
 
 default: run
 
-# Automatically detect if we are on Windows or Linux to make the proper setup
+# Automatically detect if we are on Windows or Linux to set up properly
 setup:
     @just --justfile {{justfile()}} _setup-{{OS}}
 
@@ -17,30 +19,34 @@ _setup-linux:
 _setup-windows:
     cmake -B {{BUILD_DIR}} -G Ninja
 
-# Compile with build-linux or build-win-native
+# Compile inside the current OS subdirectory (build/linux or build/win-native)
 build:
     cmake --build {{BUILD_DIR}}
 
-# Run the executable in function on the OS
+# Run the executable based on the active OS
 run: build
     {{ if OS == "windows" { ".\\" + BUILD_DIR + "\\" + EXEC_NAME + ".exe" } else { "./" + BUILD_DIR + "/" + EXEC_NAME } }}
 
-# Cross compilation (compile for Windows from Linux)
+# ------------------------------------------------------------------------------
+# CROSS-COMPILATION (From Linux targeting Windows)
+# ------------------------------------------------------------------------------
 setup-cross:
     cmake -B {{BUILD_CROSS_DIR}} -G Ninja \
         -DCMAKE_SYSTEM_NAME=Windows \
         -DCMAKE_C_COMPILER=x86_64-w64-mingw32-gcc \
         -DCMAKE_CXX_COMPILER=x86_64-w64-mingw32-g++
 
-# Cross build (build for Windows from Linux)
 build-cross:
     cmake --build {{BUILD_CROSS_DIR}}
 
-# Compile the .exe for Windows and run it with Wine from Linux
+# Compile the Windows .exe and run it with Wine on Linux
 run-cross: build-cross
     wine ./{{BUILD_CROSS_DIR}}/{{EXEC_NAME}}.exe
 
 
-# Remove all the build directories
+# ------------------------------------------------------------------------------
+# CLEANUP
+# ------------------------------------------------------------------------------
+# Remove the main build directory and all its subdirectories
 clean:
-    cmake -E remove_directory {{BUILD_DIR}} {{BUILD_CROSS_DIR}}
+    cmake -E remove_directory {{BUILD_BASE_DIR}}
