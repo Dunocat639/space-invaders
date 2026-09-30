@@ -25,6 +25,7 @@ void Player::clampPosition() {
 void Player::shoot(float dt) {
     if (IsKeyPressed(KEY_SPACE) || IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         Bullet newBullet(Vector2 {position.x + size.x/2.0f, position.y}); // Add the vector to center the bullet to the player
+        newBullet.active = true;
         bullets.push_back(newBullet); // Add a new bullet to the bullets list
     }
     

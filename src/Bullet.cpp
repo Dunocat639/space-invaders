@@ -6,7 +6,7 @@ Bullet::Bullet(Vector2 originPos) {
     position = originPos; // The bullet spawns where the player is at the moment of the shoot
     velocity = 1500.0f;
     color = YELLOW;
-    active = true;
+    active = false;
 }
 
 void Bullet::update(float dt) {
@@ -19,5 +19,5 @@ void Bullet::update(float dt) {
 }
 
 void Bullet::draw() {
-    DrawCircleV(position, size, color);
+    if (active) DrawCircleV(position, size, color);
 }
