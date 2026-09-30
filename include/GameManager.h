@@ -10,10 +10,6 @@
 
 class GameManager {
 public:
-    float deltaTime();
-
-    GameManager();
-
     float GetDeltaTime();
 
     void update(Player& player, Bullet& bullet, Enemy& enemy);

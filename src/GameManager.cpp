@@ -1,9 +1,5 @@
 #include "GameManager.h"
 
-GameManager::GameManager(){
-
-};
-
 float GameManager::GetDeltaTime() {
     float deltaTime = GetFrameTime();
     return deltaTime;
