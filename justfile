@@ -9,7 +9,7 @@ EXEC_NAME := "SpaceInvaders"
 
 default: run
 
-# Automatically detect if we are on Windows or Linux to set up properly
+# Automatically detect if we are on Windows or Linux to set it up properly
 setup:
     @just --justfile {{justfile()}} _setup-{{OS}}
 
@@ -28,7 +28,7 @@ run: build
     {{ if OS == "windows" { ".\\" + BUILD_DIR + "\\" + EXEC_NAME + ".exe" } else { "./" + BUILD_DIR + "/" + EXEC_NAME } }}
 
 # ------------------------------------------------------------------------------
-# CROSS-COMPILATION (From Linux targeting Windows)
+# CROSS-COMPILATION (Compile for Windows from Linux)
 # ------------------------------------------------------------------------------
 setup-cross:
     cmake -B {{BUILD_CROSS_DIR}} -G Ninja \
@@ -44,9 +44,6 @@ run-cross: build-cross
     wine ./{{BUILD_CROSS_DIR}}/{{EXEC_NAME}}.exe
 
 
-# ------------------------------------------------------------------------------
-# CLEANUP
-# ------------------------------------------------------------------------------
-# Remove the main build directory and all its subdirectories
+# Remove build directory
 clean:
     cmake -E remove_directory {{BUILD_BASE_DIR}}
