@@ -2,6 +2,8 @@
 #include "GameManager.h"
 #include "Constants.h"
 
+
+
 Player::Player() {
     size = {60.0f, 60.0f};
     position = {(float)screenWidth / 2, (float)screenHeight - 75}; // At the bottom of the screen

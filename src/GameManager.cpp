@@ -1,5 +1,12 @@
 #include "GameManager.h"
 
+/*
+TODO ronyós:
+    - Enum per a gestionar les rondes
+    - Vector per guardar enemics de manera dinàmica en funció de la ronda
+    - Crear aquí els objectes
+*/
+
 GameManager::GameManager() {
     // Podria crear aquí els objectes de jugador, enemic i bala però de moment ho faré al main fins que sàpigui com.
 }
