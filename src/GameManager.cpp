@@ -5,6 +5,7 @@ TODO ronyós:
     - Enum per a gestionar les rondes
     - Vector per guardar enemics de manera dinàmica en funció de la ronda
     - Crear aquí els objectes
+    - Iniciar i destruir certes coses com les textures o el futur àudio
 */
 
 GameManager::GameManager() {
