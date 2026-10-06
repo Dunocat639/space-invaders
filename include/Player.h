@@ -12,6 +12,7 @@ public:
     float velocity;
     int health;
     Color color;
+    Texture2D texture;
 
     std::vector<Bullet> bullets;
 

@@ -8,6 +8,7 @@ Player::Player() {
     velocity = 700.0f;
     health = 100;
     color = GREEN;
+    texture = LoadTexture("resources/sprites/Nau.png");
 }
 
 // So the player doesn't move out the screen
@@ -43,7 +44,9 @@ void Player::shoot(float dt) {
 
 
 void Player::draw() {
-    DrawRectangleV(position, {size.x, size.y}, color);
+    //DrawRectangleV(position, {size.x, size.y}, color);
+
+    DrawTexture(texture, position.x, position.y, WHITE);
 
     for (size_t i = 0; i < bullets.size(); i++) {
         bullets[i].draw();
