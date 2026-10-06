@@ -1,6 +1,5 @@
 #include "Bullet.h"
 
-
 Bullet::Bullet(Vector2 originPos) {
     size = 10.0f;
     position = originPos; // The bullet spawns where the player is at the moment of the shoot

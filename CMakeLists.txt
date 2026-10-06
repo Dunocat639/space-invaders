@@ -10,12 +10,31 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Configurem GLFW (el motor de fons de raylib) perquè s'entengui de meravella amb Wayland
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     set(GLFW_BUILD_WAYLAND ON CACHE BOOL "Build GLFW with Wayland support" FORCE)
+    set(GLFW_BUILD_X11 ON CACHE BOOL "Build GLFW with X11 support" FORCE)
 endif()
 
-# AQUÍ ESTÀ LA CLAU OFFLINE:
-# Forcem CMake a buscar la llibreria de raylib que ja tens instal·lada a les entranyes del teu sistema.
-# Zero descàrregues.
-find_package(raylib REQUIRED)
+include(FetchContent)
+
+if(CMAKE_CROSSCOMPILING)
+    # Quan fem cross-compiling a Windows, compilem raylib des del codi font amb MinGW
+    FetchContent_Declare(
+        raylib
+        GIT_REPOSITORY https://github.com/raysan5/raylib.git
+        GIT_TAG 6.0
+    )
+    FetchContent_MakeAvailable(raylib)
+else()
+    # En natiu intentem trobar el paquet del sistema primer; si no hi és, el descarreguem
+    find_package(raylib QUIET)
+    if(NOT raylib_FOUND)
+        FetchContent_Declare(
+            raylib
+            GIT_REPOSITORY https://github.com/raysan5/raylib.git
+            GIT_TAG 6.0
+        )
+        FetchContent_MakeAvailable(raylib)
+    endif()
+endif()
 
 # Busquem tot el teu codi font. CONFIGURE_DEPENDS refresca el build si fiques fitxers nous.
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS "src/*.cpp")
@@ -44,12 +63,12 @@ if(WIN32)
 endif()
 
 # Màgia per moure els teus gràfics i sons al lloc correcte després de compilar
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/assets")
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/resources")
     add_custom_command(
         TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
-                "${CMAKE_CURRENT_SOURCE_DIR}/assets"
-                "$<TARGET_FILE_DIR:${PROJECT_NAME}>/assets"
+                "${CMAKE_CURRENT_SOURCE_DIR}/resources"
+                "$<TARGET_FILE_DIR:${PROJECT_NAME}>/resources"
         COMMENT "Movent els assets a la vora de l'executable..."
     )
 endif()
