@@ -9,7 +9,11 @@ Enemy::Enemy() {
     color = RED; 
     active = true;
 }
-
+/*
+void init() {
+    texture = LoadTexture("resources/sprites/NauEnemiga.png") // Encara no existeix
+}
+*/
 void Enemy::draw() {
     if(active) DrawRectangleRec(body, color);
 }

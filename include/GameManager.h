@@ -10,6 +10,13 @@
 
 class GameManager {
 public:
+
+    GameManager();
+
+    void init(Player& player);
+
+    void unload(Player& player);
+
     float GetDeltaTime();
 
     void update(Player& player, Bullet& bullet, Enemy& enemy);

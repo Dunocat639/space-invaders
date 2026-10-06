@@ -13,10 +13,10 @@ int main() {
     int refreshRate = GetMonitorRefreshRate(monitor);
     SetTargetFPS(refreshRate);
 
-    GameManager game;
     Player player;
     Bullet bullet(player.position);
     Enemy enemy;
+    GameManager game;
 
     while (!WindowShouldClose()) {
 

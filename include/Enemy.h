@@ -15,8 +15,13 @@ public:
     Color color;
     bool active;
     Rectangle body;
+    //Texture2D texture;
 
     Enemy();
+
+    void init();
+
+    void unload();
 
     void draw();
 

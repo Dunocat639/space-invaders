@@ -1,5 +1,19 @@
 #include "GameManager.h"
 
+GameManager::GameManager() {
+    // Podria crear aquí els objectes de jugador, enemic i bala però de moment ho faré al main fins que sàpigui com.
+}
+
+void GameManager::init(Player& player) {
+    player.init();
+    //enemy.init();
+}
+
+void GameManager::unload(Player& player) {
+    player.unload();
+    //enemy.unload();
+}
+
 float GameManager::GetDeltaTime() {
     float deltaTime = GetFrameTime();
     return deltaTime;

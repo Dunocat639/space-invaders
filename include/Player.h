@@ -17,6 +17,9 @@ public:
     std::vector<Bullet> bullets;
 
     Player();
+    
+    void init();
+    void unload();
 
     // So the player doesn't move out the screen
     void clampPosition();
